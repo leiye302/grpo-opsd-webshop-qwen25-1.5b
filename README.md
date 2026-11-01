@@ -59,7 +59,7 @@ conda activate webshop-grpo-opsd
 export JAVA_HOME="$CONDA_PREFIX"
 python -m pip install --upgrade pip setuptools wheel packaging ninja psutil
 python src/setup.py --framework
-python -m pip install -r configs/requirements.txt
+python scripts/install_runtime.py
 python -m pip install flash-attn==2.7.4.post1 --no-build-isolation
 python -m pip install -e .deps/sdar -c configs/requirements.txt
 python -m pip check
@@ -80,6 +80,9 @@ bash scripts/train.sh --dry-run
 
 所有模型、数据、NLP和上游代码来自 README/配置中指定的公开固定版本，
 并有 SHA/source-lock 校验。FlashAttention需要兼容wheel或本地nvcc编译。
+安装器保留 vLLM Python API/server 的运行依赖，仅不安装其未使用的 FastAPI
+命令行附加包，避免该附加包的 typer 要求与原生 spaCy3.7.2 冲突；不改已安装
+库的源码或metadata，不升级原生评分依赖，安装结束执行 pip check。
 不执行原版脚本的私人代理、wandb示例、用户路径或全机清理命令。
 
 ## 训练、续跑、评测和导出

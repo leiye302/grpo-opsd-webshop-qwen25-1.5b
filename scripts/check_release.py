@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED = {
+    'scripts/install_runtime.py', 'tests/test_runtime_install.py',
     'docs/BASELINE_DIFF.md', 'tests/test_baseline_contract.py',
     'src/evaluation_contract.py', 'configs/evaluation_protocol.json',
     'docs/SHARED_EVALUATION140.md', 'tests/test_shared_evaluation.py',
